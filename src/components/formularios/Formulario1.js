@@ -18,7 +18,7 @@ const Formulario1 = () => {
 
   return (
     <Fragment>
-      <h1>FORMULARIOS</h1>
+      <h1>Formulario con useState hook</h1>
       <form className="row" onSubmit={sendFormData}>
         <div className="col-md-3">
           <input

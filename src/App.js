@@ -4,6 +4,7 @@ import Saludo from "./components/saludos/Greetings";
 import CheckTemperature from "./components/temperatureCheck/CheckTemperature";
 import List1 from "./components/list1/List1";
 import Formulario1 from "./components/formularios/Formulario1";
+import Formulario2 from "./components/formularios/Formulario2";
 
 function App() {
   return (
@@ -11,6 +12,11 @@ function App() {
       <h1 className="container mt-5">REACT COMPONENTS</h1>
       <div className="container mt-5">
         <Formulario1 />
+      </div>
+      <br />
+      <br />
+      <div className="container mt-3">
+        <Formulario2 />
       </div>
       <br />
       <br />
