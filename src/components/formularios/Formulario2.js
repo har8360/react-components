@@ -2,10 +2,15 @@ import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
 
 const Formulario2 = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, event) => {
     console.log(data);
+    event.target.reset();
   };
 
   return (
@@ -15,25 +20,33 @@ const Formulario2 = () => {
         <input
           className="form-control my-2"
           type="text"
-          name="firstname"
-          placeholder="First Name"
-          {...register("firstname")}
+          placeholder="Firstname"
+          {...register("firstname", {
+            required: { value: true, message: "Firstname is required" },
+          })}
         />
+        <span className="text-danger text-small d-block mb-2">
+          {errors?.firstname?.message}
+        </span>
         <input
           className="form-control my-2"
           type="text"
-          name="lastname"
           placeholder="Last Name"
-          {...register("lastname")}
+          {...register("lastName", { required: true })}
         />
+        <span className="text-danger text-small d-block mb-2">
+          {errors.lastName?.type === "required" && "Last name is required"}
+        </span>
         <input
           className="form-control my-2"
           type="text"
-          name="title"
           placeholder="Title"
-          {...register("title")}
+          {...register("title", { required: true })}
         />
-        <button className="btn btn-primary">Submit</button>
+        <span className="text-danger text-small d-block mb-2">
+          {errors.title && "Title name is required"}
+        </span>
+        <input className="btn btn-primary" type="submit" />
       </form>
     </Fragment>
   );
