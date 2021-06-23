@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Formulario2 = () => {
@@ -6,11 +6,16 @@ const Formulario2 = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data, event) => {
+  const [formEntries, setFormEntries] = useState([]);
+
+  const onSubmit = (data) => {
     console.log(data);
-    event.target.reset();
+    data.id = Math.floor(Math.random() * 10000000);
+    setFormEntries([...formEntries, data]);
+    reset();
   };
 
   return (
@@ -44,10 +49,23 @@ const Formulario2 = () => {
           {...register("title", { required: true })}
         />
         <span className="text-danger text-small d-block mb-2">
-          {errors.title && "Title name is required"}
+          {errors.title && "Title is required"}
         </span>
-        <input className="btn btn-primary" type="submit" />
+        <input
+          className="btn btn-primary"
+          type="submit"
+          disabled={Object.keys(errors).length !== 0}
+        />
       </form>
+      <br />
+      <div>
+        {formEntries.map((item) => (
+          <span
+            className="d-block mb-4"
+            key={item.id}
+          >{`Candidate: ${item.firstname} ${item.lastName} - Profession: ${item.title} - ID: ${item.id}`}</span>
+        ))}
+      </div>
     </Fragment>
   );
 };

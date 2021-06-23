@@ -21,8 +21,8 @@ const List1 = () => {
     <Fragment>
       <h1>NUMBER LIST</h1>
       <button onClick={handleOnClickAddNumber}>Add number</button>
-      {numberArray.map((item) => (
-        <p>{item}</p>
+      {numberArray.map((item, index) => (
+        <p key={index}>{item}</p>
       ))}
     </Fragment>
   );
